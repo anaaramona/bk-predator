@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="hr"> 
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Predator Boxing Club | Makarska</title>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+        
+        <style>
+            /* 1. GLOBAL SETTINGS */
+            body {
+                background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%), url('mali.jpg');
+                background-size: cover; background-position: center; background-attachment: fixed; 
+                color: white; font-family: 'Oswald', sans-serif; margin: 0;
+                display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            }
+            html { scroll-behavior: smooth; }
+
+            header {
+                background-color: #d40000; width: 100%; padding: 15px 0; text-align: center;
+                letter-spacing: 4px; font-weight: 700; box-shadow: 0px 5px 20px rgba(0,0,0,0.8);
+            }
+
+            /* 2. MAIN BOX */
+            .main-box {
+                background: rgba(15, 15, 15, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1); margin: 40px 0; padding: 30px;
+                width: 90%; max-width: 450px; box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
+                text-align: center; border-radius: 20px;
+            }
+
+            .logo { 
+                width: 100%; max-width: 400px; height: auto; 
+                margin-bottom: -20px; display: block; margin-left: auto; margin-right: auto;
+                filter: drop-shadow(0 0 8px rgba(212, 0, 0, 0.6));
+            }
+
+            h2 { margin: 0; color: #d40000; font-size: 2.2rem; letter-spacing: 5px; }
+
+            /* 3. CALCULATOR STYLE */
+            .calc-section {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 20px;
+                border-radius: 15px;
+                margin: 20px 0;
+                border: 1px solid rgba(212, 0, 0, 0.3);
+            }
+            .calc-input {
+                background: #222; border: 1px solid #444; color: white;
+                padding: 10px; font-family: 'Oswald'; font-size: 1.2rem;
+                width: 80px; text-align: center; border-radius: 5px;
+            }
+            #weightResult {
+                margin-top: 15px; font-size: 1.3rem; color: #ffcc00; font-weight: bold; min-height: 1.5rem;
+            }
+
+            /* 4. TABLE & BUTTONS */
+            table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+            th { color: #d40000; padding: 10px; border-bottom: 2px solid #333; }
+            td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+            .button-group { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+            .btn-main, .btn-secondary { 
+                padding: 15px 25px; font-family: 'Oswald', sans-serif; font-weight: 700; 
+                text-transform: uppercase; border-radius: 5px; cursor: pointer; transition: 0.3s; 
+            }
+            .btn-main { background: #d40000; color: white; border: none; }
+            .btn-secondary { background: transparent; color: white; border: 2px solid white; }
+            .btn-main:hover { transform: scale(1.05); background: #ff0000; }
+            .btn-secondary:hover { background: white; color: black; }
+
+            /* GALLERY & MODAL */
+            .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0; }
+            .photo-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 5px; cursor: zoom-in; }
+            .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+            .photo-item img:hover { transform: scale(1.1); }
+            
+            .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); }
+            .modal-content { margin: auto; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 90%; max-height: 80vh; border: 2px solid #d40000; border-radius: 10px; }
+            .close { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 50px; font-weight: bold; cursor: pointer; }
+            
+            .top-contact { margin-bottom: 20px; }
+            .phone-link { color: #d40000; text-decoration: none; font-weight: 700; transition: 0.3s; }
+            .phone-link:hover { color: white; }
+            .map-container { margin: 20px 0; border-radius: 10px; overflow: hidden; }
+        </style>
+    </head> 
+
+    <body> 
+        <header>BOKS KLUB PREDATOR</header>
+
+        <div class="main-box">
+            <img src="bk predator.png" class="logo" alt="Predator Club Emblem">
+            <h2>MAKARSKA</h2>
+            <p class="tagline">— EST. 2005 —</p>
+
+            <div class="top-contact">
+                <p>📞 <a href="tel:+385958437135" class="phone-link">+385 95 843 7135</a></p>
+                <p>✉️ <a href="mailto:boksklubpredator@gmail.com" class="phone-link" style="font-size: 0.9rem;">boksklubpredator@gmail.com</a></p>
+            </div>
+            
+            <hr>
+
+            <div class="calc-section">
+                <h3>WEIGHT CLASS FINDER</h3>
+                <p style="font-size: 0.8rem; color: #aaa;">Official 2026 HBS Senior Men Categories</p>
+                <input type="number" id="weightInput" class="calc-input" placeholder="kg">
+                <button class="btn-main" onclick="checkClass()" style="padding: 10px 15px;">CHECK</button>
+                <div id="weightResult"></div>
+            </div>
+
+            <table>
+                <tr><th>CLASS</th><th>DAYS</th><th>TIME</th></tr>
+                <tr><td>Women's</td><td>M / W / F</td><td>18:30</td></tr>
+                <tr><td>Men's</td><td>M / W / F</td><td>20:00</td></tr>
+            </table>
+
+            <div class="button-group">
+                <a href="https://www.instagram.com/boks_klub_predator/" target="_blank"><button class="btn-main">START TRAINING</button></a>
+                <a href="#gallery"><button class="btn-secondary">VIEW GALLERY</button></a>
+            </div>
+
+            <div class="contact-info">
+            <hr>
+             <h3>LOCATION</h3>
+             <p>📍 <a href="https://maps.google.com/?q=Ul.+Europske+zajednice+1,+21300,+Makarska" target="_blank" class="phone-link">
+                    Ul. Europske zajednice 1<br>
+            <span style="font-size: 0.8rem; color: #888;">Gradska sportska dvorana, Makarska</span>
+             </a></p>
+    
+              <div class="map-container" style="margin: 20px 0; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
+              <iframe 
+                    width="100%" 
+                    height="220" 
+                    style="border:0;" 
+                    loading="lazy" 
+                    allowfullscreen 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2893.3574843477134!2d17.014522376652433!3d43.30050897112134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x134af86142784841%3A0x676939634d0b67f1!2sUl.%20Europske%20zajednice%201%2C%2021300%2C%20Makarska!5e0!3m2!1shr!2shr!4v1700000000000">
+                </iframe>
+            </div>
+            </div>
+            <div id="gallery">
+                <hr>
+                <h3>GALLERY</h3>
+                <div class="photo-grid">
+                <div class="photo-item"><img src="gym1.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym2.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym3.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym4.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym5.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym6.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym7.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym8.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym9.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym10.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym11.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym12.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym13.jpg" onclick="openModal(this)"></div>
+                <div class="photo-item"><img src="gym14.jpg" onclick="openModal(this)"></div>
+            </div>
+            </div>
+
+           
+
+            <a href="#" style="color:#d40000; text-decoration:none; font-size:0.8rem;">↑ BACK TO TOP</a>
+        </div>
+
+        <div id="photoModal" class="modal" onclick="closeModal()">
+            <span class="close">×</span>
+            <img class="modal-content" id="imgFull">
+        </div>
+
+        <script>
+            function checkClass() {
+                let w = parseFloat(document.getElementById('weightInput').value);
+                let res = document.getElementById('weightResult');
+                
+                if (isNaN(w)) { res.innerHTML = "Unesite kilograme!"; return; }
+
+                // LOGIC BASED ON YOUR 2025 PDF (Senior Men)
+                if (w < 47) res.innerHTML = "Below Senior Classes";
+                else if (w < 50) res.innerHTML = "Flyweight (Muha)";
+                else if (w < 55) res.innerHTML = "Bantamweight (Bantam)";
+                else if (w < 60) res.innerHTML = "Lightweight (Laka)";
+                else if (w < 65) res.innerHTML = "Welterweight (Velter)";
+                else if (w < 70) res.innerHTML = "Light Middleweight (Polusrednja)";
+                else if (w < 75) res.innerHTML = "Middleweight (Srednja)";
+                else if (w < 80) res.innerHTML = "Light Heavyweight (Poluteška)";
+                else if (w < 85) res.innerHTML = "Cruiserweight";
+                else if (w < 90) res.innerHTML = "Heavyweight (Teška)";
+                else res.innerHTML = "Super Heavyweight (Superteška)";
+            }
+
+            function openModal(imgElement) {
+                document.getElementById("photoModal").style.display = "block";
+                document.getElementById("imgFull").src = imgElement.src;
+            }
+            function closeModal() {
+                document.getElementById("photoModal").style.display = "none";
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predator Timer</title>
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('mali.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow-y: auto; /* Allow scrolling for history on mobile */
+        }
+        #timer-display {
+            font-size: 9rem;
+            margin: 10px 0;
+            color: #d40000;
+            -webkit-text-stroke: 2px white;
+            font-weight: 900;
+            text-shadow: 0px 0px 20px rgba(212, 0, 0, 0.6); 
+        }
+        #round-display, #status-label {
+            text-shadow: 2px 2px 5px rgba(0,0,0,1);
+            font-weight: bold;
+        }
+        .controls button {
+            background: rgba(34, 34, 34, 0.8);
+            border: 2px solid #d40000;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 5px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        .controls button:hover { background: #d40000; }
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #aaa;
+            text-decoration: none;
+            font-size: 1rem;
+            border: 1px solid #444;
+            padding: 5px 15px;
+            border-radius: 5px;
+            background: rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-btn">← BACK TO HOME</a>
+    <div id="status-label" style="font-size: 2rem;">WORK</div>
+    <div id="round-display" style="font-size: 2rem; color: #aaa;">Round: 1 / 12</div>
+    <div id="timer-display">03:00</div>
+
+    <div class="controls">
+        <button onclick="startTimer()">START</button>
+        <button onclick="pauseTimer()">PAUSE</button>
+        <button onclick="resetTimer()">RESET</button>
+        <button onclick="setShortRound()">Short Round (1 min)</button>
+    </div>
+
+    <div id="history-section" style="margin-top: 30px; width: 80%; max-width: 400px; text-align: center;">
+        <h3 style="border-bottom: 1px solid #d40000; padding-bottom: 5px;">WORKOUT LOG</h3>
+        <ul id="history-list" style="list-style: none; padding: 0; color: #aaa;"></ul>
+        <button onclick="clearHistory()" style="background: none; border: none; color: #555; cursor: pointer; font-size: 0.8rem;">Clear History</button>
+    </div>
+
+    <script>
+        let timer;
+        let timeLeft = 180; 
+        let isRunning = false;
+        let audioCtx = null;
+        let currentRound = 1;
+        const totalRounds = 12;
+        let isPrep = true;
+
+        const display = document.getElementById('timer-display');
+        const statusLabel = document.getElementById('status-label');
+        const roundDisplay = document.getElementById('round-display');
+
+        function playBeep() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = "sine"; 
+            osc.frequency.value = 880; 
+            osc.start();
+            setTimeout(() => osc.stop(), 500);
+        }
+
+        function updateDisplay() {
+            let mins = Math.floor(timeLeft / 60);
+            let secs = timeLeft % 60;
+            display.innerHTML = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            isRunning = true;
+            
+            if (currentRound === 1 && statusLabel.innerHTML === "WORK" && isPrep) {
+                timeLeft = 10; 
+                statusLabel.innerHTML = "PREP";
+                statusLabel.style.color = "yellow";
+                display.style.color = "yellow";
+            }
+
+            timer = setInterval(() => {
+                if (timeLeft > 0) {
+                    timeLeft--;
+                    updateDisplay();
+                    if (isPrep && timeLeft <= 3 && timeLeft > 0) playBeep(); 
+                } else {
+                    playBeep(); 
+                    if (isPrep) {
+                        isPrep = false;
+                        statusLabel.innerHTML = "WORK";
+                        statusLabel.style.color = "#d40000";
+                        display.style.color = "#d40000";
+                        timeLeft = 180;
+                    } else if (statusLabel.innerHTML === "WORK") {
+                        statusLabel.innerHTML = "REST";
+                        statusLabel.style.color = "#00ff00";
+                        display.style.color = "#00ff00";
+                        timeLeft = 60;
+                    } else {
+                        currentRound++;
+                        if (currentRound > totalRounds) {
+                            saveWorkout(totalRounds);
+                            resetTimer();
+                            alert("TRAINING COMPLETE, CHAMP!");
+                            return;
+                        }
+                        statusLabel.innerHTML = "WORK";
+                        statusLabel.style.color = "#d40000";
+                        display.style.color = "#d40000";
+                        timeLeft = 180;
+                        roundDisplay.innerHTML = `Round: ${currentRound} / ${totalRounds}`;
+                    }
+                    updateDisplay();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timer);
+            isRunning = false;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            timeLeft = 180;
+            currentRound = 1;
+            isPrep = true;
+            statusLabel.innerHTML = "WORK";
+            statusLabel.style.color = "#d40000";
+            display.style.color = "#d40000";
+            roundDisplay.innerHTML = `Round: 1 / 12`;
+            updateDisplay();
+        }
+
+        function setShortRound() {
+            pauseTimer();
+            timeLeft = 60;
+            updateDisplay();
+        }
+
+        function saveWorkout(rounds) {
+            const history = JSON.parse(localStorage.getItem('predatorHistory')) || [];
+            const newEntry = {
+                date: new Date().toLocaleDateString(),
+                rounds: rounds,
+                time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            };
+            history.unshift(newEntry);
+            localStorage.setItem('predatorHistory', JSON.stringify(history.slice(0, 10)));
+            displayHistory();
+        }
+
+        function displayHistory() {
+            const history = JSON.parse(localStorage.getItem('predatorHistory')) || [];
+            const list = document.getElementById('history-list');
+            list.innerHTML = history.map(entry => 
+                `<li style="margin-bottom: 10px; font-size: 0.9rem;">
+                    <span style="color: white;">${entry.date}</span> - ${entry.rounds} Rounds 
+                    <small style="display: block; color: #555;">${entry.time}</small>
+                </li>`
+            ).join('');
+        }
+
+        function clearHistory() {
+            localStorage.removeItem('predatorHistory');
+            displayHistory();
+        }
+
+        displayHistory();
+    </script>
+</body>
+</html>

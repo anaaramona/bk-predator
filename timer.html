@@ -18,8 +18,9 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            overflow-y: auto; /* Allow scrolling for history on mobile */
+            overflow-y: auto;
         }
+
         #timer-display {
             font-size: 9rem;
             margin: 10px 0;
@@ -28,39 +29,56 @@
             font-weight: 900;
             text-shadow: 0px 0px 20px rgba(212, 0, 0, 0.6); 
         }
-        #round-display, #status-label {
-            text-shadow: 2px 2px 5px rgba(0,0,0,1);
-            font-weight: bold;
-        }
+
         .controls {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* Adds space between buttons */
-    margin-top: 20px;
-    flex-wrap: wrap; /* Helps buttons stack if the phone is small */
-}
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
 
-.controls button {
-    padding: 15px 25px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    border: none;
-    background-color: #d40000; /* Predator Red */
-    color: white;
-    transition: transform 0.2s;
-    min-width: 100px; /* Makes them easy to hit */
-}
+        .controls button {
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #d40000;
+            color: white;
+            transition: transform 0.2s;
+            min-width: 100px;
+        }
 
-.controls button:active {
-    transform: scale(0.95); /* Little 'click' feel when you tap */
-}
+        .controls button:active {
+            transform: scale(0.95);
+        }
+
+        /* Fixed Style for the Back to Home Button */
+        .btn-back {
+            display: inline-block;
+            margin-bottom: 20px; /* Put it at the top */
+            padding: 10px 20px;
+            border: 2px solid white; /* White frame to match the theme */
+            background-color: transparent;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
 
-    <a href="index.html" class="back-btn">← BACK TO HOME</a>
+    <a href="index.html" class="btn-back">BACK TO HOME</a>
     <div id="status-label" style="font-size: 2rem;">WORK</div>
     <div id="round-display" style="font-size: 2rem; color: #aaa;">Round: 1 / 12</div>
     <div id="timer-display">03:00</div>

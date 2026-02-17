@@ -1,18 +1,36 @@
 html {
     font-size: 22px;
 }
+
 body {
     background-color: #333;
     color: whitesmoke;
 }
 
-a{
-    color: aliceblue
+a {
+    color: aliceblue;
+    text-decoration: none; /* Keeps it clean */
 }
-a: :visited {
+
+/* Fixed the double colons and spacing */
+a:visited {
     color: lightgray;
 }
 
-a:hover, a: :active {
+a:hover, a:active {
     color: #eee;
+}
+
+/* Moved this OUTSIDE of the link rules so it works properly */
+@media (max-width: 600px) {
+    .timer-display {
+        font-size: 5rem !important; 
+    }
+    .status-text {
+        font-size: 1.5rem !important;
+    }
+    .controls button {
+        padding: 15px 30px !important;
+        font-size: 1rem !important;
+    }
 }

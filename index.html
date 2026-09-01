@@ -7,8 +7,10 @@
         <meta name="description" content="Prvi boksački klub u povijesti Makarske. Kontakt: +385 95 843 7135.">
         <meta name="keywords" content="boks, makarska, boks klub predator, trening, hbs">
         <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="main.css">
+
         <link rel="icon" type="image/png" href="favicon.png">
-        
+        <script src="script.js"></script>
         <style>
             /* 1. GLOBAL SETTINGS */
             body {
@@ -57,37 +59,37 @@
                 margin-top: 15px; font-size: 1.3rem; color: #ffcc00; font-weight: bold; min-height: 1.5rem;
             }
 
-           /* 4. TABLE & BUTTONS */
-table { width: 100%; margin: 20px 0; border-collapse: collapse; }
-th { color: #d40000; padding: 10px; border-bottom: 2px solid #333; }
-td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+                    /* 4. TABLE & BUTTONS */
+            table { width: 100%; margin: 20px 0; border-collapse: collapse; }
+            th { color: #d40000; padding: 10px; border-bottom: 2px solid #333; }
+            td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-.button-group { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
+            .button-group { display: flex; gap: 10px; justify-content: center; margin: 20px 0; flex-wrap: wrap; }
 
-.btn-main, .btn-secondary { 
-    display: inline-block;    /* This gives it the "frame" shape */
-    text-decoration: none;   /* This removes the underline */
-    padding: 15px 25px; 
-    font-family: 'Oswald', sans-serif; 
-    font-weight: 700; 
-    text-transform: uppercase; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    transition: 0.3s; 
-    text-align: center;
-}
+            .btn-main, .btn-secondary { 
+                display: inline-block;    /* This gives it the "frame" shape */
+                text-decoration: none;   /* This removes the underline */
+                padding: 15px 25px; 
+                font-family: 'Oswald', sans-serif; 
+                font-weight: 700; 
+                text-transform: uppercase; 
+                border-radius: 5px; 
+                cursor: pointer; 
+                transition: 0.3s; 
+                text-align: center;
+            }
 
-/* Force the text to stay white even if the link was clicked */
-.btn-main, .btn-main:visited, 
-.btn-secondary, .btn-secondary:visited { 
-    color: white !important; 
-}
+            /* Force the text to stay white even if the link was clicked */
+            .btn-main, .btn-main:visited, 
+            .btn-secondary, .btn-secondary:visited { 
+                color: white !important; 
+            }
 
-.btn-main { background: #d40000; border: none; }
-.btn-secondary { background: transparent; border: 2px solid white; }
+            .btn-main { background: #d40000; border: none; }
+            .btn-secondary { background: transparent; border: 2px solid white; }
 
-.btn-main:hover { transform: scale(1.05); background: #ff0000; color: white; }
-.btn-secondary:hover { background: white; color: black !important; }
+            .btn-main:hover { transform: scale(1.05); background: #ff0000; color: white; }
+            .btn-secondary:hover { background: white; color: black !important; }
             
             /* GALLERY & MODAL */
             .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0; }
@@ -188,11 +190,25 @@ td { padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); }
             <a href="#" style="color:#d40000; text-decoration:none; font-size:0.8rem;">↑ BACK TO TOP</a>
         </div>
 
-        <div id="photoModal" class="modal" onclick="closeModal()">
-            <span class="close">×</span>
+        <div id="photoModal" class="modal">
+            <span class="close" onclick="closeModal()">&times;</span>
+            
+            <a class="prev" onclick="event.stopPropagation(); changeModalImage(-1)">&#10094;</a>
+            <a class="next" onclick="event.stopPropagation(); changeModalImage(1)">&#10095;</a>
+            
             <img class="modal-content" id="imgFull">
         </div>
-
+         <!-- PLUTAJUĆI OBLAČIĆ (Lebdi u donjem desnom kutu) -->
+                     <div class="floating-notice" id="floatingNotice">
+                    <div class="notice-content">
+                        <span class="notice-icon">🔔</span>
+                            <div>
+                                <strong>OBAVIJEST</strong>
+                                <p>Treninzi za mušku grupu kreću sutra, 02.09.2026!</p>
+                            </div>
+                     </div>
+                      <button class="notice-close" onclick="document.getElementById('floatingNotice').style.display='none'">✕</button>
+                    </div>
         <script>
             function checkClass() {
                 let w = parseFloat(document.getElementById('weightInput').value);

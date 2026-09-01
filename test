@@ -1,0 +1,467 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Boks klub Predator u Makarskoj nudi treninge boksa za muškarce, žene i djecu. Rekreativni i natjecateljski boks u Gradska sportska dvorana Makarska. Prijavi se!">
+    <meta name="keywords" content="boks klub makarska, bk predator, boks makarska, treninzi boksa, rekreacija makarska, gradska sportska dvorana makarska">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Boks Klub Predator Makarska">
+    <meta property="og:description" content="Treniraj boks u Makarskoj. Prvi trening je besplatan!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bkpredator.hr/">
+
+    <!-- FAVICON LINK (OVDJE GA STAVLJAŠ) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <title>Predator Boxing Club | Škola Boksa i Rekreativni Treninzi | Makarska</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+        
+        <style>
+            /* 1. GLOBAL & BACKGROUND */
+            body {
+                background: radial-gradient(circle, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.9) 100%), 
+                            url('mali.jpg');
+                background-size: cover;       
+                background-position: center;  
+                background-attachment: fixed; 
+                color: white; 
+                font-family: 'Oswald', sans-serif;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                min-height: 100vh;
+                overflow-x: hidden;
+            }
+
+            /* 2. TOP NAVIGATION BAR */
+            header {
+                background-color: #d40000;
+                width: 100%;
+                padding: 15px 0;
+                text-align: center;
+                letter-spacing: 4px;
+                font-weight: 700;
+                box-shadow: 0px 5px 20px rgba(0,0,0,0.8);
+                text-transform: uppercase;
+                position: relative;
+                z-index: 10;
+            }
+
+            /* 3. MODERN GLASS CONTAINER */
+            .main-box {
+                background: rgba(15, 15, 15, 0.75);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-top: 40px;
+                margin-bottom: 60px;
+                padding: 40px 30px;
+                width: 90%;
+                max-width: 450px; 
+                box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.5);
+                text-align: center;
+                border-radius: 20px;
+                animation: fadeInUp 1s ease-out;
+                box-sizing: border-box;
+            }
+
+            @keyframes fadeInUp {
+                from { opacity: 0; transform: translateY(30px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            .logo {
+                width: 400px;
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 10px;
+                filter: drop-shadow(0 0 10px rgba(212, 0, 0, 0.4));
+            }
+
+            h2 {
+                margin: 0;
+                color: #d40000;
+                font-size: 2rem; 
+                letter-spacing: 5px;
+                text-transform: uppercase;
+            }
+
+            .tagline {
+                color: #aaa; 
+                margin-top: 5px;
+                font-size: 1rem;
+                letter-spacing: 2px;
+            }
+
+            hr {
+                border: 0;
+                height: 3px;
+                width: 60px;
+                background: #d40000;
+                margin: 25px auto;
+            }
+
+            /* TOP CONTACTS STYLES & HOVER */
+            .top-contacts {
+                margin: 15px 0;
+            }
+
+            .top-contacts p {
+                margin: 6px 0;
+            }
+
+            .top-link, 
+            .top-link:visited,
+            .phone-link,
+            .phone-link:visited {
+                color: #ffffff !important;
+                text-decoration: none;
+                font-size: 1.1rem;
+                transition: color 0.3s ease, transform 0.2s ease;
+                display: inline-block;
+            }
+
+            .top-link:hover, 
+            .top-link:active,
+            .phone-link:hover,
+            .phone-link:active {
+                color: #d40000 !important;
+                transform: scale(1.05);
+            }
+
+            /* 4. TABLE STYLES */
+            table {
+                width: 100%;
+                margin: 20px 0;
+                border-collapse: collapse;
+            }
+
+            th {
+                color: #d40000;
+                font-size: 1.05rem;
+                padding: 10px 5px;
+                border-bottom: 2px solid #333;
+                text-transform: uppercase;
+            }
+
+            td {
+                padding: 12px 5px;
+                font-size: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            /* 5. WEIGHT CLASS FINDER SECTION */
+            .weight-finder {
+                background: rgba(0, 0, 0, 0.4);
+                padding: 15px;
+                border-radius: 10px;
+                margin: 20px 0;
+                border: 1px solid rgba(212, 0, 0, 0.3);
+            }
+
+            .weight-finder h4 {
+                margin: 0 0 5px 0;
+                color: #d40000;
+                letter-spacing: 2px;
+            }
+
+            .weight-finder p {
+                margin: 0 0 10px 0;
+                font-size: 0.85rem;
+                color: #aaa;
+            }
+
+            .weight-input-group {
+                display: flex;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .weight-input-group input {
+                width: 100px;
+                padding: 8px;
+                background: #222;
+                border: 1px solid #444;
+                color: white;
+                border-radius: 5px;
+                font-family: 'Oswald', sans-serif;
+                text-align: center;
+            }
+
+            .btn-check {
+                background: #d40000;
+                color: white;
+                border: none;
+                padding: 8px 15px;
+                font-family: 'Oswald', sans-serif;
+                font-weight: bold;
+                cursor: pointer;
+                border-radius: 5px;
+                text-transform: uppercase;
+            }
+
+            /* 6. BUTTONS */
+            .btn-container {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+                margin: 25px 0;
+            }
+
+            .btn-main {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: #d40000;
+                color: white;
+                border: none;
+                padding: 15px 20px;
+                font-family: 'Oswald', sans-serif;
+                font-size: 1.1rem;
+                font-weight: 700;
+                cursor: pointer;
+                text-transform: uppercase;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(212, 0, 0, 0.3);
+            }
+
+            .btn-secondary {
+                background-color: transparent;
+                border: 2px solid #d40000;
+                box-shadow: none;
+            }
+
+            .btn-main:hover, .btn-secondary:hover {
+                transform: translateY(-2px);
+                background-color: #ff0000;
+                color: white;
+                box-shadow: 0 8px 20px rgba(212, 0, 0, 0.5);
+            }
+
+            /* 7. MAP SECTION */
+            .contact-info {
+                margin-top: 20px;
+            }
+
+            .map-container {
+                margin: 20px 0;
+                border-radius: 12px;
+                overflow: hidden;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+
+            iframe {
+                display: block;
+            }
+
+            /* 8. PLUTAJUĆI OBLAČIĆ (NOTIFICATIONS) */
+            .floating-notice {
+                position: fixed;
+                bottom: 25px;
+                right: 25px;
+                z-index: 9999;
+                background: #141414;
+                border: 2px solid #d40000;
+                border-radius: 16px;
+                padding: 15px 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 15px;
+                box-shadow: 0 8px 25px rgba(212, 0, 0, 0.5);
+                max-width: 340px;
+                animation: bounceIn 0.8s ease, pulseGlow 2.5s infinite;
+            }
+
+            .notice-content {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: left;
+            }
+
+            .notice-icon {
+                font-size: 1.8rem;
+            }
+
+            .notice-content strong {
+                color: #d40000;
+                font-size: 0.85rem;
+                letter-spacing: 1.5px;
+                display: block;
+            }
+
+            .notice-content p {
+                margin: 2px 0 0 0;
+                color: #ffffff;
+                font-size: 0.95rem;
+            }
+
+            .notice-close {
+                background: transparent;
+                border: none;
+                color: #888;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding: 0 5px;
+                transition: color 0.2s ease;
+            }
+
+            .notice-close:hover {
+                color: #d40000;
+            }
+
+            @keyframes bounceIn {
+                0% { transform: translateY(100px); opacity: 0; }
+                70% { transform: translateY(-10px); opacity: 1; }
+                100% { transform: translateY(0); opacity: 1; }
+            }
+
+            @keyframes pulseGlow {
+                0% { box-shadow: 0 5px 20px rgba(212, 0, 0, 0.4); }
+                50% { box-shadow: 0 5px 30px rgba(212, 0, 0, 0.8); }
+                100% { box-shadow: 0 5px 20px rgba(212, 0, 0, 0.4); }
+            }
+
+            @media (max-width: 600px) {
+                .floating-notice {
+                    bottom: 15px;
+                    left: 15px;
+                    right: 15px;
+                    max-width: none;
+                }
+            }
+        </style>
+    </head> 
+    <script>
+        const backToTopBtn = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
+    <body> 
+        <header>BOKS KLUB PREDATOR</header>
+
+        <div class="main-box">
+            <!-- 1. LOGO & NASLOV -->
+            <img src="bk predator.png" class="logo" alt="Predator Club Emblem">
+            <h2>MAKARSKA</h2>
+            <p class="tagline">— EST. 2005 —</p>
+            
+            <!-- 2. KONTAKTI NA VRHU (s hover efektom u crvenu) -->
+            <div class="top-contacts">
+                <p>📞 <a href="tel:+385958437135" class="top-link">+385 95 843 7135</a></p>
+                <p>✉️ <a href="mailto:boksklubpredator@gmail.com" class="top-link">boksklubpredator@gmail.com</a></p>
+            </div>
+
+            <hr> 
+            
+            <p style="letter-spacing: 1px; color: #ddd;">HARD WORK • DISCIPLINE • RESULTS</p>
+                    
+            <!-- SCHEDULE TABLE -->
+            <table>
+                <tr>
+                    <th>CLASS</th>
+                    <th>DAYS</th>
+                    <th>TIME</th>
+                </tr>
+                <tr>
+                    <td>Women's</td>
+                    <td>M / W / F</td>
+                    <td>18:30</td>
+                </tr>
+                <tr>
+                    <td>Men's</td>
+                    <td>M / W / F</td>
+                    <td>20:00</td>
+                </tr>
+            </table>
+
+            <!-- WEIGHT CLASS FINDER -->
+            <div class="weight-finder">
+                <h4>WEIGHT CLASS FINDER</h4>
+                <p>Official 2026 HBS Senior Men Categories</p>
+                <div class="weight-input-group">
+                    <input type="number" id="userWeight" placeholder="kg" min="40" max="150">
+                    <button class="btn-check" onclick="findCategory()">CHECK</button>
+                </div>
+                <p id="weightResult" style="margin-top: 10px; font-weight: bold; color: #fff;"></p>
+            </div>
+
+            <!-- BUTTONS -->
+            <div class="btn-container">
+                <a href="timer.html" class="btn-main">START TRAINING</a>
+                <a href="gallery.html" class="btn-main btn-secondary">VIEW GALLERY</a>
+            </div>
+
+            <!-- MAP SECTION -->
+            <div class="contact-info">
+                <hr>
+                <h3 class="section-title">LOCATION</h3>
+                <p>📍 <a href="https://maps.google.com/maps?q=Boks+klub+Predator+Makarska" target="_blank" class="phone-link">
+                    Ul. Europske zajednice 1, Makarska<br>(Gradska sportska dvorana)
+                </a></p>
+                
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="200" 
+                        style="border:0;" 
+                        loading="lazy" 
+                        src="https://maps.google.com/maps?q=Boks%20klub%20Predator%20Makarska%20Ul.%20Europske%20zajednice%201&t=&z=15&ie=UTF8&iwloc=&output=embed">
+                    </iframe>
+                </div>
+            </div>
+        </div> 
+
+        <!-- PLUTAJUĆI OBLAČIĆ (Lebdi u donjem desnom kutu) -->
+        <div class="floating-notice" id="floatingNotice">
+            <div class="notice-content">
+                <span class="notice-icon">🔔</span>
+                <div>
+                    <strong>OBAVIJEST</strong>
+                    <p>Treninzi za mušku grupu kreću sutra 02.09.2026!</p>
+                </div>
+            </div>
+            <button class="notice-close" onclick="document.getElementById('floatingNotice').style.display='none'">✕</button>
+        </div>
+      <a href="#" class="back-to-top" title="Povratak na vrh">
+         &#9650; <span>BACK TO TOP</span>
+      </a>
+        <!-- SIMPLE WEIGHT CATEGORY LOGIC -->
+        <script>
+            function findCategory() {
+                const w = parseFloat(document.getElementById('userWeight').value);
+                const res = document.getElementById('weightResult');
+                if (!w) { res.innerText = "Unesite kilažu!"; return; }
+                
+                if (w <= 48) res.innerText = "Minimumweight (46-48 kg)";
+                else if (w <= 51) res.innerText = "Flyweight (51 kg)";
+                else if (w <= 54) res.innerText = "Bantamweight (54 kg)";
+                else if (w <= 57) res.innerText = "Featherweight (57 kg)";
+                else if (w <= 60) res.innerText = "Lightweight (60 kg)";
+                else if (w <= 63.5) res.innerText = "Light Welterweight (63.5 kg)";
+                else if (w <= 67) res.innerText = "Welterweight (67 kg)";
+                else if (w <= 71) res.innerText = "Light Middleweight (71 kg)";
+                else if (w <= 75) res.innerText = "Middleweight (75 kg)";
+                else if (w <= 80) res.innerText = "Light Heavyweight (80 kg)";
+                else if (w <= 86) res.innerText = "Cruiserweight (86 kg)";
+                else if (w <= 92) res.innerText = "Heavyweight (92 kg)";
+                else res.innerText = "Super Heavyweight (+92 kg)";
+            }
+        </script>
+    </body>
+</html>

@@ -1,27 +1,85 @@
+/* --- Global Styles --- */
 html {
-    font-size: 22px;
+    font-size: 16px;
+    scroll-behavior: smooth; /* Makes clicking the logo slide down smoothly */
 }
 
 body {
     background-color: #333;
     color: whitesmoke;
+    margin: 0;
+    padding: 0;
 }
 
 a {
     color: aliceblue;
-    text-decoration: none; /* Keeps it clean */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-/* Fixed the double colons and spacing */
 a:visited {
-    color: lightgray;
+    color: whitesmoke; /* Prevents the "visited purple" look */
 }
 
 a:hover, a:active {
-    color: #eee;
+    color: #ff0000; /* Predator Red on hover */
 }
 
-/* Moved this OUTSIDE of the link rules so it works properly */
+/* --- Modal & Gallery Navigation --- */
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    margin-top: 50px;
+    border: 3px solid #ff0000; /* Red border for Predator style */
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.3s ease;
+    user-select: none;
+    text-decoration: none;
+}
+
+.next { right: 20px; }
+.prev { left: 20px; }
+
+.prev:hover, .next:hover {
+    background-color: rgba(255, 0, 0, 0.8);
+    border-radius: 5px;
+}
+
+/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
     .timer-display {
         font-size: 5rem !important; 
@@ -32,5 +90,82 @@ a:hover, a:active {
     .controls button {
         padding: 15px 30px !important;
         font-size: 1rem !important;
+    }
+    /* Make arrows slightly smaller on mobile */
+    .prev, .next {
+        font-size: 30px;
+        padding: 10px;
+    }
+}
+/* PLUTAJUĆI OBLAČIĆ (KOMPAKTAN I DESNO) */
+.floating-notice {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 999999;
+    background: #1a1a1a;
+    border: 1px solid #d40000;
+    border-radius: 22px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6px;
+    box-shadow: 0 6px 22px rgba(212, 0, 0, 0.5);
+    max-width: 220px; /* Smanjeno s 360px na kompaktnijih 300px */
+}
+
+.notice-content {
+    display: middle;
+    flex-direction: column;
+    align-items: flex-start; /* Poravnanje nalijevo umjesto u sredinu */
+    text-align: left;
+    width: 100%;
+}
+
+.notice-icon {
+    font-size: 2rem; /* Smanjena ikona */
+    margin-bottom: 2px;
+}
+
+.notice-content strong {
+    color: #d40000;
+    font-size: 2rem; /* Smanjeno s 28px na normalnih ~17px */
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 1px;
+    font-weight: bold;
+}
+
+.notice-content p {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.1rem; /* Smanjeno s 20px na ugodnih ~14px */
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.notice-close {
+    background: transparent;
+    border: none;
+    color: #aaa;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.notice-close:hover {
+    color: #d40000;
+}
+
+/* Prilagodba za mobitele (da ne zaklanja cijeli ekran) */
+@media (max-width: 600px) {
+    .floating-notice {
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        max-width: none;
     }
 }

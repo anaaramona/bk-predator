@@ -36,6 +36,9 @@ a:hover, a:active {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9); /* Dark background */
 }
+.photo-item img { 
+    cursor: pointer; 
+}
 
 .modal-content {
     margin: auto;

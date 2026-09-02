@@ -172,3 +172,74 @@ a:hover, a:active {
         max-width: none;
     }
 }
+/* STILOVI ZA OBRAZAC PRIJAVE */
+.signup-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    border: 1px solid rgba(212, 0, 0, 0.3);
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-input {
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    padding: 12px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.form-input:focus {
+    border-color: #d40000;
+    outline: none;
+}
+/* --- PRIVACY POLICY MODAL --- */
+.privacy-modal {
+    display: none;
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.privacy-modal-content {
+    background: #1a1a1a;
+    border: 2px solid #d40000;
+    border-radius: 12px;
+    margin: 15% auto;
+    padding: 25px;
+    width: 85%;
+    max-width: 450px;
+    color: white;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(212, 0, 0, 0.4);
+    box-sizing: border-box;
+}
+
+.privacy-close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.privacy-close:hover {
+    color: #d40000;
+}

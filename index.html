@@ -124,27 +124,69 @@
             <hr>
 
             <div class="calc-section">
-                <h3>WEIGHT CLASS FINDER</h3>
+                <h3>PRONAĐI SVOJU KATEGORIJU</h3>
                 <p style="font-size: 0.8rem; color: #aaa;">Official 2026 HBS Senior Men Categories</p>
                 <input type="number" id="weightInput" class="calc-input" placeholder="kg">
-                <button class="btn-main" onclick="checkClass()" style="padding: 10px 15px;">CHECK</button>
+                <button class="btn-main" onclick="checkClass()" style="padding: 10px 15px;">PROVJERI</button>
                 <div id="weightResult"></div>
             </div>
 
             <table>
-                <tr><th>CLASS</th><th>DAYS</th><th>TIME</th></tr>
-                <tr><td>Women's</td><td>M / W / F</td><td>18:30</td></tr>
-                <tr><td>Men's</td><td>M / W / F</td><td>20:00</td></tr>
+                <tr><th>GRUPA</th><th>DAN</th><th>VRIJEME</th></tr>
+                <tr><td>ŽENE</td><td>PON / SRI / PET</td><td>18:30</td></tr>
+                <tr><td>MUŠKARCI</td><td>PON / SRI / PET</td><td>20:00</td></tr>
             </table>
 
+            <!-- OBRAZAC -->
+            <div class="signup-section">
+                <h3>PRIJAVA NA PROBNI TRENING</h3>
+                <form action="https://formspree.io/f/xljebpvl" method="POST" id="signupForm" class="signup-form">                    
+                    <!-- Ime i Prezime -->
+                    <input 
+                        type="text" 
+                        id="nameInput"
+                        name="name" 
+                        placeholder="Ime i prezime" 
+                        class="form-input" 
+                        required>
+            
+                    <!-- Broj mobitela -->
+                    <input 
+                        type="tel" 
+                        id="phoneInput"
+                        name="phone" 
+                        placeholder="Broj mobitela" 
+                        class="form-input" 
+                        required>
+
+                        <!-- Email -->
+                    <input 
+                    type="email" 
+                    id="emailInput"
+                    name="email" 
+                    placeholder="Email adresa" 
+                    class="form-input" 
+                    required>
+            
+                    <!-- Odabir grupe -->
+                    <select id="groupSelect" name="group" class="form-input" required>
+                        <option value="" disabled selected>Odaberi grupu</option>
+                        <option value="zene">Ženska grupa</option>
+                        <option value="muski">Muška grupa</option>
+                    </select>
+            
+                    <button type="submit" class="btn-main" style="width: 100%; margin-top: 10px;">POŠALJI PRIJAVU</button>
+                </form>
+            </div>
+
             <div class="button-group">
-                <a href="timer.html" class="btn-main">Start Training</a>
-                <a href="#gallery" class="btn-secondary">View Gallery</a>
+                <a href="timer.html" class="btn-main">TIMER</a>
+                <a href="#gallery" class="btn-secondary">GALERIJA</a>
             </div>
 
             <div class="contact-info">
             <hr>
-             <h3>LOCATION</h3>
+             <h3>LOKACIJA</h3>
              <p>📍 <a href="https://maps.google.com/?q=Ul.+Europske+zajednice+1,+21300,+Makarska" target="_blank" class="phone-link">
                     Ul. Europske zajednice 1<br>
             <span style="font-size: 0.8rem; color: #888;">Gradska sportska dvorana, Makarska</span>
@@ -164,7 +206,7 @@
             </div>
             <div id="gallery">
                 <hr>
-                <h3>GALLERY</h3>
+                <h3>GALERIJA</h3>
                 <div class="photo-grid">
                 <div class="photo-item"><img src="gym1.jpg" onclick="openModal(this)"></div>
                 <div class="photo-item"><img src="gym2.jpg" onclick="openModal(this)"></div>
@@ -195,22 +237,44 @@
 
             <a href="#" style="color:#d40000; text-decoration:none; font-size:0.8rem;">↑ BACK TO TOP</a>
         </div>
+        <!-- LINK U FOOTERU -->
+<p style="margin-top: 15px; font-size: 0.8rem;">
+    <a href="javascript:void(0)" onclick="openPrivacyModal()" style="color: #888; text-decoration: underline;">Politika privatnosti</a>
+</p>
 
-        <div id="photoModal" class="modal">
-            <span class="close" onclick="closeModal()">&times;</span>
-            
-            <a class="prev" onclick="event.stopPropagation(); changeModalImage(-1)">&#10094;</a>
-            <a class="next" onclick="event.stopPropagation(); changeModalImage(1)">&#10095;</a>
-            
-            <img class="modal-content" id="imgFull">
-        </div>
+<!-- MODAL ZA POLITIKU PRIVATNOSTI -->
+<div id="privacyModal" class="privacy-modal">
+    <div class="privacy-modal-content">
+        <span class="privacy-close" onclick="closePrivacyModal()">&times;</span>
+        <h3 style="color: #d40000; margin-top: 0;">POLITIKA PRIVATNOSTI</h3>
+        
+        <p>Boks klub Predator poštuje vašu privatnost i štiti vaše osobne podatke.</p>
+        
+        <ul style="text-align: left; font-size: 0.9rem; line-height: 1.5; padding-left: 20px; color: #ccc;">
+            <li><strong>Svrha prikupljanja:</strong> Podaci uneseni u obrazac (ime, e-mail, mobitel) koriste se isključivo za stupanje u kontakt vezano uz probne treninge i upise.</li>
+            <li><strong>Treće strane:</strong> Vaši podaci se ne prodaju, ne dijele niti ustupaju trećim stranama.</li>
+            <li><strong>Pohrana i brisanje:</strong> Podaci se ne pohranjuju u javne baze. U bilo kojem trenutku možete zatražiti brisanje svojih podataka slanjem e-maila na: <a href="mailto:boksklubpredator@gmail.com" style="color: #d40000;">boksklubpredator@gmail.com</a>.</li>
+        </ul>
+
+        <button class="btn-main" onclick="closePrivacyModal()" style="padding: 8px 20px; margin-top: 15px; width: 100%;">RAZUMIJEM</button>
+    </div>
+</div>
+
+       <!-- MODAL ZA SLIKE -->
+<div id="photoModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <a class="prev" onclick="event.stopPropagation(); changeModalImage(-1)" ontouchend="event.stopPropagation(); changeModalImage(-1)">&#10094;</a>
+    <a class="next" onclick="event.stopPropagation(); changeModalImage(1)" ontouchend="event.stopPropagation(); changeModalImage(1)">&#10095;</a>
+    <img class="modal-content" id="imgFull">
+</div>
+
          <!-- PLUTAJUĆI OBLAČIĆ (Lebdi u donjem desnom kutu) -->
                      <div class="floating-notice" id="floatingNotice">
                     <div class="notice-content">
                         <span class="notice-icon">🔔</span>
                             <div>
                                 <strong>OBAVIJEST</strong>
-                                <p>Treninzi za mušku grupu kreću sutra, 02.09.2026!</p>
+                                <p>Treninzi za mušku grupu kreću danas, 02.09.2026!</p>
                             </div>
                      </div>
                       <button class="notice-close" onclick="document.getElementById('floatingNotice').style.display='none'">✕</button>

@@ -392,3 +392,9 @@ td {
     background-color: #222;
     color: white;
 }
+.timer-display {
+    font-family: 'Courier New', Courier, monospace; /* Tehnički look */
+    /* ILI */
+    font-family: Arial, sans-serif; /* Čisti moderan look */
+    font-variant-numeric: tabular-nums;
+}
